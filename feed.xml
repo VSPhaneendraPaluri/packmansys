@@ -1,7 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://vsphaneendrapaluri.github.io/packmansys/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vsphaneendrapaluri.github.io/packmansys/" rel="alternate" type="text/html" /><updated>2019-09-08T08:41:19+05:30</updated><id>https://vsphaneendrapaluri.github.io/packmansys/feed.xml</id><title type="html">Package Management Systems</title><subtitle>Know about package management systems ?  This repo is just for that.</subtitle><entry><title type="html">CoApp - Easy to Use Package Manager</title><link href="https://vsphaneendrapaluri.github.io/packmansys/2019/09/08/coapp-easy-to-use-package-manager.html" rel="alternate" type="text/html" title="CoApp - Easy to Use Package Manager" /><published>2019-09-08T08:31:00+05:30</published><updated>2019-09-08T08:31:00+05:30</updated><id>https://vsphaneendrapaluri.github.io/packmansys/2019/09/08/coapp-easy-to-use-package-manager</id><content type="html" xml:base="https://vsphaneendrapaluri.github.io/packmansys/2019/09/08/coapp-easy-to-use-package-manager.html">&lt;h1 id=&quot;about-co-app&quot;&gt;About ‘Co-App’&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://vsphaneendrapaluri.github.io/packmansys/feed.xml" rel="self" type="application/atom+xml" /><link href="https://vsphaneendrapaluri.github.io/packmansys/" rel="alternate" type="text/html" /><updated>2019-09-09T23:48:33+05:30</updated><id>https://vsphaneendrapaluri.github.io/packmansys/feed.xml</id><title type="html">Package Management Systems</title><subtitle>Know about package management systems ?  This repo is just for that.</subtitle><entry><title type="html">Creating and Publising NuGet Package using Co-App</title><link href="https://vsphaneendrapaluri.github.io/packmansys/2019/09/09/creating-and-publising-nuget-package-using-co-app.html" rel="alternate" type="text/html" title="Creating and Publising NuGet Package using Co-App" /><published>2019-09-09T07:18:00+05:30</published><updated>2019-09-09T07:18:00+05:30</updated><id>https://vsphaneendrapaluri.github.io/packmansys/2019/09/09/creating-and-publising-nuget-package-using-co-app</id><content type="html" xml:base="https://vsphaneendrapaluri.github.io/packmansys/2019/09/09/creating-and-publising-nuget-package-using-co-app.html">&lt;h1 id=&quot;my-first-experimental-package-using-co-app&quot;&gt;My First Experimental Package Using Co-App&lt;/h1&gt;
+
+&lt;p&gt;Hey guys, I’m trying out my first NuGet package.  NuGet is one of the generic ways of creating, publishing and distributing packages.  But, default users may publish their packages to NuGet.org from where it becomes publicly accessible to every other user.  Else, users may upload it to their server spaces as well, making them available for the destined users only.&lt;/p&gt;
+
+&lt;p&gt;There are apparently two ways of creating NuGet packages.
+One is the more the XML way of doing it that uses direct interaction with NuGet binaries and other related artefacts.
+The other is what would be my topic of my post - “How to use Co-App to creating NuGet packages ?”&lt;/p&gt;
+
+&lt;h1 id=&quot;get-started-building-first-package&quot;&gt;Get Started Building First Package&lt;/h1&gt;
+
+&lt;p&gt;If you would have known how much effort it takes to build NuGet package using native tools, you might be in for a big surprise the way Co-App helps users to create NuGet packages.  It is to be understood that Co-App is still a tool in the maturing state and might miss few features that are supported by NuGet natively.  If so ever do you think that it good to have such features made available from Co-App, kindly reach out to the Co-App community.&lt;/p&gt;
+
+&lt;h1 id=&quot;co-app-installation&quot;&gt;Co-App Installation&lt;/h1&gt;
+
+&lt;p&gt;For installation on Windows (powershell), refer &lt;a href=&quot;http://coapp.org/tutorials/installation.html&quot;&gt;here&lt;/a&gt;.
+Once, all the required actions like environmental paths and updating of packages is completed, we are good to proceed further.&lt;/p&gt;
+
+&lt;p&gt;The site also lists about the step-by-step guide using ‘AutoPackage’ tool to build NuGet packages.&lt;/p&gt;
+
+&lt;h1 id=&quot;chosen-build-is-systemc&quot;&gt;Chosen Build is ‘SystemC’&lt;/h1&gt;
+
+&lt;p&gt;I’d like to demonstrate this work of how to package SystemC distributables using Co-App.
+For this, one might want to download SystemC from &lt;a href=&quot;accellera.org&quot;&gt;accellera.org&lt;/a&gt; site.  Try to extract the zip on your machine and try to build the binaries (libraraies) from the sources.  Currently, I’m demonstrating package creation for Windows only.  We can try build packages for different platforms, compilers, compiler versions, etcetera.&lt;/p&gt;
+
+&lt;p&gt;Then let’s try performing the below mentioned steps:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;First of all, we need to create a file ending in extenion (.autopkg).&lt;/li&gt;
+  &lt;li&gt;AutoPackage file contents are usually listed as if they are scoped (similar to JSON) just that the keys define the contents type and is not followed by a semi-colon(:) as like in JSON.&lt;/li&gt;
+  &lt;li&gt;The contents to be packaged using the rules within AutoPackage files could be classified as listed below:
+    &lt;ul&gt;
+      &lt;li&gt;‘#defines’ at the global scope lists the macros to be used throughout the file&lt;/li&gt;
+      &lt;li&gt;First scoped contents, apart from ‘#defines’, are listed under ‘nuget’&lt;/li&gt;
+      &lt;li&gt;‘nuget’ contains ‘nuspec’ grouping type that lists the various attributes of the AutoPackage file, like nuget-id, version, title, authors, owners, license, projectUrl, iconUrl, copyrights, etcetara.&lt;/li&gt;
+      &lt;li&gt;Next section would be the ‘files’ category that lists what all sources are needed to be packaged.  These could include list of:
+        &lt;ul&gt;
+          &lt;li&gt;List of include files listed under ‘nestedInclude’ type&lt;/li&gt;
+          &lt;li&gt;List of documentation files listed under ‘docs’&lt;/li&gt;
+          &lt;li&gt;List of libraries listed under ‘pivots’ (more is mentioned below)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Finally, it is time to specify ‘targets’ grouping.  Here, user could mention what all typse of include headers, target build types (release or debug) are to be packaged.&lt;/li&gt;
+      &lt;li&gt;Users can also mention a one final section related to ‘props’ defining the property file attributes.&lt;/li&gt;
+      &lt;li&gt;Publish the package to NuGet.org by running the following command
+        &lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nf&quot;&gt;Write-NuGetPackage&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'path-to-the-AutoPackage-file'&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Now, go to NuGet.org and search for your published package using the nuget-id.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;more-about-pivots&quot;&gt;More About Pivots.&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;As mentioned above, ‘pivots’ are a combination of [&amp;lt;’platform’&amp;gt;, &amp;lt;’compiler+version’&amp;gt;, &amp;lt;’build-type’&amp;gt;].
+User can defined as many pivots as possible.  An examples is:
+    &lt;ul&gt;
+      &lt;li&gt;[x86, v100, Debug] –&amp;gt; x86 platform, MSVC v10.0, Debug type build&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The relevant AutoPackage file to build SystemC NuGet package has been listed over &lt;a href=&quot;https://www.github.com/VSPhaneendraPaluri//packmansys/CoApp/SystemC&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="nuget," /><category term="co-app," /><category term="systemc" /><summary type="html">My First Experimental Package Using Co-App</summary></entry><entry><title type="html">CoApp - Easy to Use Package Manager</title><link href="https://vsphaneendrapaluri.github.io/packmansys/2019/09/08/coapp-easy-to-use-package-manager.html" rel="alternate" type="text/html" title="CoApp - Easy to Use Package Manager" /><published>2019-09-08T08:31:00+05:30</published><updated>2019-09-08T08:31:00+05:30</updated><id>https://vsphaneendrapaluri.github.io/packmansys/2019/09/08/coapp-easy-to-use-package-manager</id><content type="html" xml:base="https://vsphaneendrapaluri.github.io/packmansys/2019/09/08/coapp-easy-to-use-package-manager.html">&lt;h1 id=&quot;about-co-app&quot;&gt;About ‘Co-App’&lt;/h1&gt;
 
 &lt;p&gt;Co-App is an open-source package management tool coming from a credible company ‘Microsoft’.  Co-App software tool is specifically targetted to build C/C++ NuGet packages for Windows platform.  Later, users may either choose to host these packages on internal servers or publish them to NuGet.org.&lt;/p&gt;
 
-&lt;p&gt;NuGet.org is a package manager, again part of Microsoft eco-system.&lt;/p&gt;
+&lt;p&gt;NuGet is a package manager, again part of Microsoft eco-system.&lt;/p&gt;
 
 &lt;p&gt;Readers may find more about Co-App &lt;a href=&quot;http://coapp.org&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">About ‘Co-App’</summary></entry></feed>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Creating and Publising NuGet Package using Co-App | Package Management Systems</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Creating and Publising NuGet Package using Co-App" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="My First Experimental Package Using Co-App" />
+<meta property="og:description" content="My First Experimental Package Using Co-App" />
+<link rel="canonical" href="https://vsphaneendrapaluri.github.io/packmansys/2019/09/09/creating-and-publising-nuget-package-using-co-app.html" />
+<meta property="og:url" content="https://vsphaneendrapaluri.github.io/packmansys/2019/09/09/creating-and-publising-nuget-package-using-co-app.html" />
+<meta property="og:site_name" content="Package Management Systems" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-09T07:18:00+05:30" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"https://vsphaneendrapaluri.github.io/packmansys/2019/09/09/creating-and-publising-nuget-package-using-co-app.html","headline":"Creating and Publising NuGet Package using Co-App","dateModified":"2019-09-09T07:18:00+05:30","datePublished":"2019-09-09T07:18:00+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"https://vsphaneendrapaluri.github.io/packmansys/2019/09/09/creating-and-publising-nuget-package-using-co-app.html"},"description":"My First Experimental Package Using Co-App","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/packmansys/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://vsphaneendrapaluri.github.io/packmansys/feed.xml" title="Package Management Systems" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/packmansys/">Package Management Systems</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Creating and Publising NuGet Package using Co-App</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-09-09T07:18:00+05:30" itemprop="datePublished">Sep 9, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="my-first-experimental-package-using-co-app">My First Experimental Package Using Co-App</h1>
+
+<p>Hey guys, I’m trying out my first NuGet package.  NuGet is one of the generic ways of creating, publishing and distributing packages.  But, default users may publish their packages to NuGet.org from where it becomes publicly accessible to every other user.  Else, users may upload it to their server spaces as well, making them available for the destined users only.</p>
+
+<p>There are apparently two ways of creating NuGet packages.
+One is the more the XML way of doing it that uses direct interaction with NuGet binaries and other related artefacts.
+The other is what would be my topic of my post - “How to use Co-App to creating NuGet packages ?”</p>
+
+<h1 id="get-started-building-first-package">Get Started Building First Package</h1>
+
+<p>If you would have known how much effort it takes to build NuGet package using native tools, you might be in for a big surprise the way Co-App helps users to create NuGet packages.  It is to be understood that Co-App is still a tool in the maturing state and might miss few features that are supported by NuGet natively.  If so ever do you think that it good to have such features made available from Co-App, kindly reach out to the Co-App community.</p>
+
+<h1 id="co-app-installation">Co-App Installation</h1>
+
+<p>For installation on Windows (powershell), refer <a href="http://coapp.org/tutorials/installation.html">here</a>.
+Once, all the required actions like environmental paths and updating of packages is completed, we are good to proceed further.</p>
+
+<p>The site also lists about the step-by-step guide using ‘AutoPackage’ tool to build NuGet packages.</p>
+
+<h1 id="chosen-build-is-systemc">Chosen Build is ‘SystemC’</h1>
+
+<p>I’d like to demonstrate this work of how to package SystemC distributables using Co-App.
+For this, one might want to download SystemC from <a href="accellera.org">accellera.org</a> site.  Try to extract the zip on your machine and try to build the binaries (libraraies) from the sources.  Currently, I’m demonstrating package creation for Windows only.  We can try build packages for different platforms, compilers, compiler versions, etcetera.</p>
+
+<p>Then let’s try performing the below mentioned steps:</p>
+<ul>
+  <li>First of all, we need to create a file ending in extenion (.autopkg).</li>
+  <li>AutoPackage file contents are usually listed as if they are scoped (similar to JSON) just that the keys define the contents type and is not followed by a semi-colon(:) as like in JSON.</li>
+  <li>The contents to be packaged using the rules within AutoPackage files could be classified as listed below:
+    <ul>
+      <li>‘#defines’ at the global scope lists the macros to be used throughout the file</li>
+      <li>First scoped contents, apart from ‘#defines’, are listed under ‘nuget’</li>
+      <li>‘nuget’ contains ‘nuspec’ grouping type that lists the various attributes of the AutoPackage file, like nuget-id, version, title, authors, owners, license, projectUrl, iconUrl, copyrights, etcetara.</li>
+      <li>Next section would be the ‘files’ category that lists what all sources are needed to be packaged.  These could include list of:
+        <ul>
+          <li>List of include files listed under ‘nestedInclude’ type</li>
+          <li>List of documentation files listed under ‘docs’</li>
+          <li>List of libraries listed under ‘pivots’ (more is mentioned below)</li>
+        </ul>
+      </li>
+      <li>Finally, it is time to specify ‘targets’ grouping.  Here, user could mention what all typse of include headers, target build types (release or debug) are to be packaged.</li>
+      <li>Users can also mention a one final section related to ‘props’ defining the property file attributes.</li>
+      <li>Publish the package to NuGet.org by running the following command
+        <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">Write-NuGetPackage</span><span class="w"> </span><span class="err">&lt;</span><span class="s1">'path-to-the-AutoPackage-file'</span><span class="err">&gt;</span><span class="w">
+</span></code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Now, go to NuGet.org and search for your published package using the nuget-id.</li>
+</ul>
+
+<h2 id="more-about-pivots">More About Pivots.</h2>
+<ul>
+  <li>As mentioned above, ‘pivots’ are a combination of [&lt;’platform’&gt;, &lt;’compiler+version’&gt;, &lt;’build-type’&gt;].
+User can defined as many pivots as possible.  An examples is:
+    <ul>
+      <li>[x86, v100, Debug] –&gt; x86 platform, MSVC v10.0, Debug type build</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The relevant AutoPackage file to build SystemC NuGet package has been listed over <a href="https://www.github.com/VSPhaneendraPaluri//packmansys/CoApp/SystemC">here</a>.</p>
+
+  </div><a class="u-url" href="/packmansys/2019/09/09/creating-and-publising-nuget-package-using-co-app.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/packmansys/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Package Management Systems</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Package Management Systems</li><li><a class="u-email" href="mailto:pvs.myworks@gmail.com">pvs.myworks@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/vsphaneendrapaluri"><svg class="svg-icon"><use xlink:href="/packmansys/assets/minima-social-icons.svg#github"></use></svg> <span class="username">vsphaneendrapaluri</span></a></li><li><a href="https://www.twitter.com/pvsphaneendra"><svg class="svg-icon"><use xlink:href="/packmansys/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">pvsphaneendra</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Know about package management systems ?  This repo is just for that.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
