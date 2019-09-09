@@ -56,4 +56,4 @@ Then let's try performing the below mentioned steps:
   User can defined as many pivots as possible.  An examples is:
   - [x86, v100, Debug] --> x86 platform, MSVC v10.0, Debug type build
 
-The relevant AutoPackage file to build SystemC NuGet package has been listed over [here]({{ site.repository-path }}/{{ site.baseurl }}/CoApp/SystemC).
+The relevant AutoPackage file to build SystemC NuGet package has been listed over [here]({{ site.repository-path }}/{{ site.baseurl }}/CoApp/SystemC/accellera-systemc.autopkg).
